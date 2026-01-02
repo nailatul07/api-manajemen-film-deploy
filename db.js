@@ -1,13 +1,13 @@
-const { Poll, Connection, Query } = require('pg');
-require('dotenv').config();
+const { Pool } = require('pg')
+require('dotenv').config()
 
-const poll = new Poll({
-    ConnectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized: false
-    }
-});
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
+})
 
 module.exports = {
-    query: (text, params) => poll.query(text, params),
-};
+  query: (text, params) => pool.query(text, params)
+}
